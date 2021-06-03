@@ -88,19 +88,20 @@ class CoordinadoraCrearCursosView(LoginRequiredMixin, CreateView):
         sede = Sede.objects.get(coordinadora=user)
         if len(Curso.objects.filter(nombre=form['nombre'], anho = datetime.datetime.now().year, sede=sede.nombre))>0:
             raise ValidationError("Ya existe un curso con este nombre este año en esta sede")
-        lista = request.FILES.get('lista_alumnas')
-        if lista!=None:
-            filename = create_temp_file(File(lista), 'csv')
-            with open(filename, 'r') as lista:
-                try:
-                    Command().csvValidator(lista)
-                except Exception as e:
-                    if os.path.exists(filename):
-                        os.remove(filename)
-                    raise e
-            return filename
-        else:
-            return None
+        # lista = request.FILES.get('lista_alumnas')
+        # if lista!=None:
+        #     filename = create_temp_file(File(lista), 'csv')
+        #     with open(filename, 'r') as lista:
+        #         try:
+        #             Command().csvValidator(lista)
+        #         except Exception as e:
+        #             if os.path.exists(filename):
+        #                 os.remove(filename)
+        #             raise e
+        #     return filename
+        # else:
+        #     return None
+        return None
 
     def form_valid(self, request, filename):
         form = request.POST

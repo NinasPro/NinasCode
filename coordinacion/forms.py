@@ -16,7 +16,7 @@ class UserForm(ModelForm):
         fields = ['first_name', 'last_name', 'username', 'es_profesora','es_alumna','es_voluntaria']
 
 class CursoForm(ModelForm):
-    lista_alumnas = forms.FileField(required=False, help_text="Solo se acepta formato csv",validators=[FileExtensionValidator(['json', 'csv'])])
+    #lista_alumnas = forms.FileField(required=False, help_text="Solo se acepta formato csv",validators=[FileExtensionValidator(['json', 'csv'])])
     class Meta:
         model = Curso
         fields = ['nombre', 'profesoras', 'voluntarias', 'alumnas']

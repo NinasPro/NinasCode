@@ -45,13 +45,13 @@ class Command(BaseCommand):
         except Exception as e:
             raise e
         headers = next(reader, None)
-        if len(headers)!=3: #Actualmente solo se considera nombre,apellido,email
-            raise Exception(f"Se esperaban 3 columnas en los headers, pero hay {len(headers)}")
-        elif headers!=["nombre","apellido","email"]: #Se espera que los headers tengan ese orden
+        if len(headers)!=2: #Actualmente solo se considera nombre,apellido,email
+            raise Exception(f"Se esperaban 2 columnas en los headers, pero hay {len(headers)}")
+        elif headers!=["nombre","apellido"]: #Se espera que los headers tengan ese orden
             raise Exception("Los headers no estan correctos, deberían ser: nombre,apellido,email")
         for i,row in enumerate(reader):
-            if len(row)!=3:
-                raise Exception(f"Se esperaban 3 columnas en la fila {i+1}, pero hay {len(row)}")
+            if len(row)!=2:
+                raise Exception(f"Se esperaban 2 columnas en la fila {i+1}, pero hay {len(row)}")
         csvFile.close()
 
     def create(self, kind, sede, curso, csvFile):
@@ -63,7 +63,7 @@ class Command(BaseCommand):
         reader = csv.reader(csvFile)
         next(reader,None)
         for row in reader:
-            username = f'{row[2]}' #Ex: email
+            username = f'{row[0]}.{row[1]}.21' #Ex: email
             user, created = User.objects.get_or_create(username=username)
             if created:
                 user.first_name=row[0]

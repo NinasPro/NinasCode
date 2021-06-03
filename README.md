@@ -65,3 +65,9 @@ Ojo que el superusuario no tiene tipo de usuario Profesora ni Estudiante, por lo
 Luego hay que entrar a _localhost:8000/admin_ e ingresar con las credenciales creadas antes y 
 tendrás acceso a la mayoría de los datos de la base de datos. 
 
+#### Alumnas y tutoras
+Existe un comando para crear tutoras, profesoras, alumnas y coordinadoras desde un archivo csv. El comando se utiliza de la siguiente forma:
+```
+python3 manage.py crear_users [profesoras,alumnas,tutoras,coordinadoras] path_archivo_csv_con_usuarias
+```
+El archivo  _usuarios/management/commands/ejemplo.csv_ cuenta con un ejemplo de la estructura del archivo con nombres de las usuarias. 
